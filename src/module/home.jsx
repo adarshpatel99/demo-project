@@ -3,7 +3,7 @@ import { Card, Col, Flex, Row, Space, Tag } from "antd";
 import Search from "antd/es/input/Search";
 import { FilterOutlined } from "@ant-design/icons";
 import { Typography } from "antd";
-import { gql, useQuery } from "urql";
+// import { gql, useQuery } from "urql";
 import "./home.css";
 
 const { Title } = Typography;
@@ -191,23 +191,23 @@ const waterBillData = [
 ];
 
 const Home = () => {
-  const TodosQuery = gql`
-    query {
-      countries {
-        code
-        name
-        emoji
-      }
-    }
-  `;
+  // const TodosQuery = gql`
+  //   query {
+  //     countries {
+  //       code
+  //       name
+  //       emoji
+  //     }
+  //   }
+  // `;
 
-  const [result, reexecuteQuery] = useQuery({
-    query: TodosQuery,
-  });
+  // const [result, reexecuteQuery] = useQuery({
+  //   query: TodosQuery,
+  // });
 
-  const { data, fetching, error } = result;
-  const dataVal = data?.countries.map((d) => d);
-  console.log(">>dataVal", dataVal);
+  // const { data, fetching, error } = result;
+  // const dataVal = data?.countries.map((d) => d);
+  // console.log(">>dataVal", dataVal);
   // const homeData = dataVal.map((item) => item);
   // console.log(">>homeData", homeData);
   return (
@@ -264,15 +264,15 @@ const Home = () => {
                       {item.rupees}
                     </Title>
                   </Space>
-                  <div style={{ display: "flex", alignItems: "flex-end" }}>
+                  {/* <div style={{ display: "flex", alignItems: "flex-end" }}>
                     <a href="#">View </a>
-                  </div>
+                  </div> */}
                 </Flex>
               </Card>
             </Col>
           ))}
         </Row>
-        <div>
+        {/* <div>
           <Row gutter={[20, 20]}>
             {dataVal?.map((item) => (
               <Col xs={24} sm={6}>
@@ -304,7 +304,7 @@ const Home = () => {
               </Col>
             ))}
           </Row>
-        </div>
+        </div> */}
       </div>
     </div>
   );
