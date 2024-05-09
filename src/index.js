@@ -1,13 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Client, Provider, cacheExchange, fetchExchange } from "urql";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const client = new Client({
+  url: "https://countries.trevorblades.com",
+  exchanges: [cacheExchange, fetchExchange],
+});
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider value={client}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

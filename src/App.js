@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Button } from "antd";
+import Home from "./module/home";
+import Camera from "./module/camera";
 
-function App() {
+const App = () => {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("service-worker.js").then(
+        function (registration) {
+          console.log(
+            "ServiceWorker registration successful with scope: ",
+            registration.scope
+          );
+        },
+        function (err) {
+          console.log("ServiceWorker registration failed: ", err);
+        }
+      );
+    });
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div style={{ padding: "20px" }}>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <Link to="/">
+            <Button type="primary">Home</Button>
+          </Link>
+          <Link to="camera">
+            <Button>Open Camera</Button>
+          </Link>
+        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="camera" element={<Camera />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
